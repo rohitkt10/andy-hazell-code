@@ -1,0 +1,71 @@
+\documentclass[a4paper,11pt]{article} \input{../../libs/not_ieee.tex}
+%\documentclass[twocolumn]{autart} \input{../../libs/automatica.tex} 
+%\documentclass[journal]{IEEEtran}  \input{../../libs/ieee.tex}
+
+%\usepackage{draftcopy}\draftcopySetGrey{0.92}\setcounter{page}{7}
+
+\usepackage{pstricks}
+\usepackage{rotating} 
+
+\input{../../libs/utils.tex}
+\input{./Commands.tex}
+
+%%%%%%%%%%%%%%%%%%%%% Editing commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Use  \rdel{some old text} to strikethrough text to be removed %%
+%% Use  \radd{some new text} to add text                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\LARGE \bf A Framework for Discrete-Time $\htwo$ Preview Control}
+\author{Andrew J. Hazell and David J. N. Limebeer% <-this % stops a space
+\thanks{Department of Electrical and Electronic Engineering, Imperial College London, London SW7 2AZ, U.K. (email: a.hazell@imperial.ac.uk and d.limebeer@imperial.ac.uk)}%
+}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{H2PrevAbstract.tex}
+\end{abstract}
+
+
+\begin{center}
+\begin{minipage}{0.7\columnwidth}
+\small
+
+\normalsize 
+\end{minipage}
+\end{center}
+
+\section{Introduction}
+\input{H2PrevIntro.tex}
+ 
+\section{Notation and Preliminaries}
+\input{H2PrevNotation.tex}
+ 
+\section{Problem formulation}
+\input{H2PrevSys.tex}
+ 
+\section{Full-information control problem}
+\input{H2PrevFI.tex}
+
+\section{Output feedback solution}
+\input{H2PrevOF.tex}
+ 
+\section{Reduction in $\htwo$-norm due to preview}
+\input{./H2Prev2norm.tex}
+ 
+\section{Computation of preview feedforward controller} 
+\input{./H2PrevPreproc.tex}
+
+\section{Summary of Results} 
+\input{./H2PrevSummary.tex}
+ 
+\section{Concluding remarks}
+\input{H2PrevConcs.tex}
+
+\section{Acknowledgement}  \noindent
+This work was supported by a Portfolio Partnership held with the British Engineering and Physical Sciences Research Council (EPSRC), and also the Flapless Air Vehicle Integrated Industrial Research programme funded by BAe Systems and the EPSRC.
+\bibliographystyle{plain}
+\bibliography{../../Main}
+
+\end{document}

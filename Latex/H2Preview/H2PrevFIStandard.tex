@@ -1,0 +1,43 @@
+%\label{subsec:StandardFI}
+\subsection{Standard Theory}
+\label{subsec:stdH2FI}
+We begin with a brief summary of the discrete-time, linear time-invariant perfect information control problem \cite{LimebeerGreen}, which has plant description
+$$P_{FI} \shorteq \arr{c}{\hspace{0.8cm}\stackrel{n}{\leftrightarrow}\hspace{0.5cm}\stackrel{l}{\leftrightarrow}\hspace{0.6cm}\stackrel{m}{\leftrightarrow} \\\arr{r}{\scriptstyle{n} \,\updownarrow\\\scriptstyle{p} \,\updownarrow\\\scriptstyle{n} \,\updownarrow\\\scriptstyle{l} \,\updownarrow} \ma{\arr{c|cc}{ A&B_1&B_2\\\hline C_1&D_{11}&D_{12}\\I&0&0\\0&I&0}}},$$and which satisfies the following standard assumptions:
+\begin{itemize}
+\item[(A1)] $(A,B_2)$ is stabilisable 
+\item[(A2)] $D_{12}'D_{12}>0$
+\item[(A3)] rank$\ma{A-e^{j\theta}I&B_2\\C_1& D_{12}}=n+m \quad \forall\, \theta \,\in (-\pi,\pi]$.
+\end{itemize}
+
+We would like to find the internally stabilising controller $K_{FI}$ which minimises $\nrm{F_l(P_{FI},K_{FI})}_2$. First define:
+\aln{
+\bar R&=D_{12}'D_{12}+B_2'XB_2   \\
+  F_2&=-{\bar R}^{-1}(B_2'XA+D_{12}'C_1)  \label{eqn:F2Def}\\
+A_c&=A+B_2F_2.
+}
+
+In \cite{ZDG} it is shown that if (A1)-(A3) are satisfied then there exists a solution $X$ to the Discrete Algebraic Riccati Equation (DARE):
+
+\aln{X=A'XA-F_2'{\bar R}F_2+C_1'C_1 \label{eqn:X2d}}
+such that:
+\aln{
+&X\geq 0 \label{eqn:Xpos}\\
+&A_c \,\, \textrm{is asymptotically stable} \label{eqn:Xstab}
+.}
+
+A matrix $X$ satisfying (\ref{eqn:X2d}) and (\ref{eqn:Xstab}) is said to be \textit{stabilising}.
+
+The internally stabilising, full information $\htwo$-optimal controller is then given by:
+\begin{equation}
+K_{FI}=\ma{F_2 &F_0} \label{eqn:FIcont}
+\end{equation} 
+with
+\[
+F_0=-{\bar R}^{-1}(B_2'XB_1+D_{12}'D_{11}).
+\]
+%
+The resulting closed-loop norm is given by:
+\mls{
+\nrm{F_l(P_{FI},K_{FI})}_2^2=\\\tra{(D_{11}+D_{12}F_0)'(D_{11}+D_{12}F_0) +(B_1+B_2F_0)'X(B_1+B_2F_0) }.
+}
+
