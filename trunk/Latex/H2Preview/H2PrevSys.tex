@@ -1,0 +1,88 @@
+\label{sec:Sys}
+The $\htwo$-optimal preview controller is defined to be the $K$ that minimises $\nrm{T_{v\rightarrow z}}_\infty$, where $v=\ma{\eta'&w'}'$ with $w,\eta$ and $z$ defined in Figure \ref{fig:DistRejSys}. In other words, we wish to choose $K$, which minimises $\Vert F_l(P,K) \Vert_2$, where $P$ is the mapping:
+\als{
+\ma{\arr{c}{z\\\hline y\\r}}=\ma{P_{11} & P_{12}\\P_{21} & P_{22}}\ma{\arr{c}{ \eta\\w \\\hline u}}
+.}
+
+The signals satisfy: $\szo{w(k)}{l_w}$, $\szo{r(k)}{l_r}$, $\szo{\eta(k)}{l_r}$, $\szo{v(k)}{l}$ (i.e. $l=l_r+l_w$), $\szo{u(k)}{m}$, $\szo{y(k)}{q_g}$   and $\szo{z(k)}{p}$.  Also define $q=q_g+l_r$. The  $N$-step delay line, $\Phi$, has the realisation:
+
+\[
+\Phi(\z)=\z^{-N}I_{l_r} \shorteq \ma{\arr{c|c}{A_p&B_p\\\hline C_p&0_{l_r\times l_r}}}
+\]
+with $A_p,B_p$ and $C_p$ defined by:
+ \als{
+ A_p&=\ma{  0_{l_r}&I_{l_r} &\hdots&  0_{l_r}\\
+   \vdots&\vdots &&  \vdots\\
+   0_{l_r}&0_{l_r} &\hdots&  I_{l_r}\\
+   0_{l_r}&0_{l_r} &\hdots&  0_{l_r}}
+ %A_p&=\ma{0&I_{(N-k-1)lr}\\0_{l_r\times l_r}&0}
+ \intertext{and}
+ B_{p}&=\ma{0_{(N-1)l_r\times l_r} \\ I_{l_r}},  \quad  
+ C_p=\ma{\arr{c}{\arr{cccc}
+ {I_{l_r}& 0_{l_r\times (N-1)lr}}
+ }}
+}
+where $N$ represents the number of preview steps and $\szo{A_p}{Nl_r\times Nl_r}$.
+ Without loss of generality the square transfer function $W_r$ is assumed to be outer \cite{LimebeerGreen,ZDG}, with realisation:
+\als{
+W_r\shorteq \ma{\arr{c|c}{
+A_r & B_r\\ \hline
+C_r & D_r
+}}
+}
+where $\szo{A_r}{n_r\times n_r}$. Also without loss of generality \cite{LimebeerGreen}, the plant is assumed to have the realisation:
+
+\als{
+G\shorteq \ma{\arr{c|cc:c}{
+A_g & B_{1gr} & B_{1gw} & B_{2g}\\\hline
+C_{1g}& D_{11gr} & D_{11gw} & D_{12}\\\hdashline
+C_{2g}&D_{21gr} & D_{21gw}&0
+}}
+}
+where $\szo{A_g}{n_g\times n_g}$. 
+
+The transfer function from $\eta$ to $\ma{\hat r\\r} $ has realisation:
+
+\als{
+\ma{\arr{c|c}{
+A_d&B_d\\\hline
+C_{d1}&0\\\hdashline
+C_{d2}&D_r
+}}
+=\ma{\arr{cc|c}{
+A_p &B_pC_r&B_pDr\\
+0&A_r&B_r\\\hline
+C_p&0&0\\\hdashline
+0&C_r&D_r
+}},
+}
+and so the generalised plant $P$ has realisation:
+\aln{
+P&\shorteq
+\arr{c}{
+\hspace{1.5cm}\stackrel{n_g}{\leftrightarrow}\hspace{0.5cm}
+\stackrel{Nl_r+n_r}{\leftrightarrow}\hspace{0.9cm}
+\stackrel{l_r}{\leftrightarrow}\hspace{0.6cm}
+\stackrel{l_w}{\leftrightarrow}\hspace{0.8cm}
+\stackrel{m}{\leftrightarrow} \\
+%%
+\arr{r}{
+\scriptstyle{n_g} \,\updownarrow\\
+\scriptstyle{Nl_r+n_r} \,\updownarrow\\
+\scriptstyle{p} \,\updownarrow\\
+\scriptstyle{q} \,\updownarrow\\
+\scriptstyle{l_r} \,\updownarrow} 
+\ma{\arr{cc|cc:c}{
+A_g&B_{1gr}C_{d1}&0&B_{1gw}&B_{2g}\\
+0&A_d&B_{d}&0&0\\\hline
+C_{1g} &D_{11gr}C_{d1} &0&D_{11gw}&D_{12}\\ \hdashline
+C_{2g}&D_{21gr}C_{d1}&0&D_{21gw}&0\\
+0&C_{d2}&D_r&0&0
+}}}\label{eqn:P}\\
+&\shorteq\ssmod{A}{B_1}{B_2}{C_1}{C_2}{D_{11}}{D_{12}}{D_{21}}{0}. \label{eqn:GenPlant}
+}
+The $A$-matrix in (\ref{eqn:GenPlant}) satisfies $\szo{A}{n\times n}$ with $n=n_g+Nl_r+n_r$.
+
+
+
+

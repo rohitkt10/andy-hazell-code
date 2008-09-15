@@ -1,0 +1,43 @@
+\label{sec:notation}
+We will make use of discrete-time state-space models of the form:
+\als{
+x(k+1)&=Ax(k)+Bu(k)\\
+y(k)&=Cx(k)+Du(k)
+}
+in which $k$ is the time index, $x(k)$ is a vector of state variables, $u(k)$ is a vector of inputs, $y(k)$ is a vector of outputs, and $A,B,C$ and $D$ are appropriately dimensioned real matrices. Signals will sometimes be represented by omitting the time index, e.g.
+$$x=\{x(k)\}^{\infty}_{-\infty}.$$
+When transfer functions are associated with these models, they are computed using:
+\als{
+G(\mathcal{Z})=C(\mathcal{Z} I -A)^{-1}B+D
+}
+in which $\mathcal{Z}$ is the Z-transform variable. We will also use the shorthand notation:
+\aln{
+G(\mathcal{Z})\shorteq\ssmodf{A}{B}{C}{D}\label{eqn:GABCD}.
+}
+The transfer function $G(\mathcal{Z})$ will be abbreviated $G$ when no confusion will occur.
+
+The (lower) linear fractional transformation of the transfer-function matrices $P=\ma{P_{11} &P_{12}\\P_{21} & P_{22}}$, and $K$ will be written as $F_l(P,K)$ where: 
+ \als{F_l(P,K)=P_{11}+P_{12}K(I-P_{22}K)^{-1}P_{21}.} 
+
+The trace of a matrix will be denoted $\tra{A}$.
+ 
+The $\htwo$-norm of a transfer function $G(\mathcal{Z})$ will be denoted by $\nrm{G(\z)}_2$, and is defined by:
+\als{\nrm{G(\z)}_2=\frac{1}{2\pi}\int_{-\pi}^{\pi}\tra{G(e^{j\theta})'G(e^{j\theta})}\textrm{d}\theta.}
+If $G$ has the realisation (\ref{eqn:GABCD}), with $A$ assumed stable, and $X$ is a matrix which satisfies:
+\aln{
+X&=A'XA+C'C, \nonumber\\
+\intertext{then}
+\nrm{G(\z)}_2&=\tra{B'XB+D'D}\label{eqn:2normcomp}
+.}
+%
+A transfer function that maps signal $a$ to signal $b$ will be denoted $T_{a\rightarrow b}$.
+
+% The product operator will have the definition:
+% \als{\prod_{i=1}^{N} T_i= T_1T_{2}\ldots T_{N-1} T_N }
+%The set of eigenvalues of $A$ will be denoted as $\lambda(A)$ and the eigenvalues of the matrix pencil $A-\lambda B$ will be written as $\lambda(A,B)$. 
+An $m\times p$ dimensional zero matrix will be denoted as $0_{m\times p}$ and an $n$ dimensional identity matrix will written as $I_n$. The shorthand $0_m=0_{m\times m}$ will also be used. We will often use the notation $\star_{m\times p}$ to represent a matrix belonging to $\mathbb R^{m\times p}$; the dimensions may be omitted when no ambiguity will result.
+
+The complex conjugate transpose of $A$ will be denoted $A'$ and n-dimensional real vectors are denoted $\mathbb{R}^n$.
+
+
+%The largest singular value of $A$ will be denoted as $\bar\sigma(A)$.

@@ -1,0 +1,157 @@
+\label{sec:H2FI}
+\input{./H2PrevFIStandard.tex}
+\subsection{Efficient computation of the Full-Information controller}
+\label{subsec:FIEff}
+
+In this section we will find an efficient solution for the DARE (\ref{eqn:X2d}) for the plant described in Section \ref{sec:Sys}. First we decompose (\ref{eqn:X2d}) into an $n_g$-dimensional DARE, an $Nl_r+n_r$-dimensional discrete Lyapunov equation, and an $(n_g\times Nl_r+n_r)$-dimensional Stein equation. We then give an efficient solution to the Stein equation, and show how this leads to an efficient method for computing the full information controller.
+
+\begin{lem}[Decomposition of DARE]
+Let $X$ be the unique stabilising and nonnegative solution to the DARE (\ref{eqn:X2d}), and partition $X$ as:
+%
+\als{X&=
+	\arr{r}{
+	\stackrel{n_g}{\leftrightarrow}\hspace{0.3cm}
+	\stackrel{Nl_r+n_r}{\leftrightarrow}\hspace{0.3cm}\\
+	%%
+	\arr{r}{
+	\scriptstyle{n_g} \,\updownarrow\\
+	\scriptstyle{Nl_r+n_r} \,\updownarrow}
+	\ma{\arr{cc}{ X_{gg} & X_{gd} \\ X_{gd}' & X_{dd}}}
+,}}
+%
+then $X_{gg}$ is the unique stabilising and nonnegative solution to the DARE:
+\aln{X_{gg}&=A_g'X_{gg}A_g - F_{2g}'{\bar R}F_{2g}+C_{1g}'C_{1g}, \label{eqn:Xgg}
+\intertext{where}
+F_{2g}&=-\bar R^{-1}\left(B_{2g}'X_{gg}A_g+D_{12}'C_{1g}\right) \label{eqn:F2g}\\
+\intertext{in which $\bar R$ may be computed from}
+\bar R&=B_{2g}'X_{gg}B_{2g}+D_{12}'D_{12}\label{eqn:RbEff}.
+\intertext{Further, $X_{gd}$ and $X_{dd}$ are the unique solutions to}
+X_{gd}&=SC_{d1}+A_{cg}'X_{gd}A_d  \label{eqn:Xgd}\\
+X_{dd}&=A_d'X_{dd}A_d+Q  \label{eqn:Xdd},}
+with
+\als{
+S&=A_g'X_{gg}B_{1gr}+F_{2g}'B_{2g}'X_{gg}B_{1gr}+F_{2g}'D_{12}'D_{11gr}+C_{1g}'D_{11gr}\\
+A_{cg}&=A_g+B_{2g}F_{2g}\\
+F_{2d}&=-\bar R^{-1}\left( B_{2g}'X_{gd}A_d+B_{2g}'X_{gg}B_{1gr}C_{d1}+D_{12}'D_{11gr}C_{d1} \right)\\
+Q&=C_{d1}'B_{1gr}'X_{gg}B_{1gr}C_{d1}+A_d'X_{gd}'B_{1gr}C_{d1}+C_{d1}'B_{1gr}'X_{gd}A_d\\
+&\qquad-F_{2d}'\bar RF_{2d}+C_{d1}'D_{11gr}'D_{11gr}C_{d1}.
+}
+\end{lem}
+
+\begin{proof}
+First partition (\ref{eqn:F2Def}) conformably with $X$:
+\aln{
+F_2&=-\bar R^{-1}\left( \ma{B_{2g}' & 0 } \ma{X_{gg} & X_{gd} \\ X_{gd}' & X_{dd}}\ma{A_g & B_{1gr}C_{d1}\\ 0 & A_d}+D_{12}'\ma{C_{1g} & D_{11gr}C_{d1}}\right) \nonumber \\
+&=-\bar R^{-1}\ma{B_{2g}'X_{gg}A_g+D_{12}'C_{1g} & B_{2g}'X_{gd}A_d+B_{2g}'X_{gg}B_{1gr}C_{d1}+D_{12}'D_{11gr}C_{d1}} \nonumber \\
+&=\ma{F_{2g} &F_{2d}}\label{eqn:F2part}
+,}
+and hence $F_{2g}$ and $F_{2d}$ form partitions of $F_2$.
+Now partition (\ref{eqn:X2d}) to obtain:
+
+\mln{
+\ma{X_{gg} & X_{gd} \\ X_{gd}' & X_{dd}}=\ma{A_g' &0 \\ C_{d1}'B_{1gr}' & A_d'}\ma{X_{gg} & X_{gd} \\ X_{gd}' & X_{dd}} \ma{A_g & B_{1gr}C_{d1}\\ 0 & A_d}\\
+	-\ma{F_{2g}'\\F_{2d}'}\bar R\ma{F_{2g}&F_{2d}}+\ma{C_{1g}'\\C_{d1}'D_{11gr}'}\ma{C_{1g}&D_{11gr}C_{d1}}.
+	\label{eqn:RicXpart}
+}
+Equation (\ref{eqn:RbEff}) is easily checked, and so equations (\ref{eqn:Xgg}), (\ref{eqn:Xgd}) and (\ref{eqn:Xdd}) follow immediately by considering, respectively, the top left, the top right, and the bottom right partitions of (\ref{eqn:RicXpart}).
+
+Now note that:
+\als{
+A_c=\ma{A_{cg} & \star \\ 0 & A_d}
+}
+in which $A_d$ is stable.  It now follows from assumption (A1) that $X_{gg}$ is stabilising if and only if $X$ is stabilising.
+\end{proof}
+%
+
+Note that $F_{2g}$ and $\bar R$ are not functions of $X_{gd}$ or $X_{dd}$, and so (\ref{eqn:Xgg}) may be solved independently of (\ref{eqn:Xgd}) and (\ref{eqn:Xdd}). Since (\ref{eqn:Xgd}) depends on the solution of (\ref{eqn:Xgg}), it can be solved next. Finally (\ref{eqn:Xdd}) depends on both (\ref{eqn:Xgg}) and (\ref{eqn:Xgd}) and so is necessarily solved last. The following result provides a fast algorithm for solving (\ref{eqn:Xgd}).
+
+\begin{lem}[Efficient solution of Stein equation]
+\label{lem:SylvRecurs}
+Consider the discrete Stein equation:
+\aln{
+X_{gd}=SC_{d1}+A_{cg}'X_{gd}A_d \label{eqn:SylvX}
+}
+with $A_{cg}$ stable. Partitioning   $X_{gd}=\ma{X_{gp} & X_{gr}}$ compatibly with  
+\als{A_d=\ma{A_p & B_pC_r\\0& A_r},}
+gives
+\aln{
+X_{gp}&= \ma{S &A_{cg}'S & {A_{cg}'}^2S & \ldots&{A_{cg}'}^{N-1}S }\label{eqn:Xgp}\\ 
+X_{gr}&={A_{cg}'}^{N}SC_r+A_{cg}'X_{gr}A_r \label{eqn:Xgr}.
+}
+
+\begin{proof}
+Partitioning (\ref{eqn:SylvX}) leads to :
+\aln{
+X_{gp}&=SC_p+A_{cg}'X_{gp}A_p  \label{eqn:XgpSyl}\\
+X_{gr}&=A_{cg}'X_{gp}B_pC_r+A_{cg}'X_{gr}A_r.  \label{eqn:XgrSyl}
+}
+%
+If we substitute (\ref{eqn:XgpSyl}) into itself $M$ times we obtain:
+\als{
+X_{gp}&=  {A_{cg}'}^{M+1} X_{gp} A_p^{M+1}+\sum_{k=0}^{M} {A_{cg}'}^k SC_p A_p^k.
+}
+Since $A_{cg}$ and $A_p$ are stable, we may allow $M\rightarrow \infty$  and hence write:
+\als{
+X_{gp}&= \sum_{k=0}^{\infty} {A_{cg}'}^k SC_p A_p^k.
+}
+However, since $A_p^N=0$ we may truncate the infinite sum to give:
+\aln{
+X_{gp}&= \sum_{k=0}^{N-1} {A_{cg}'}^k SC_p A_p^k.\label{eqn:XgpSum}
+}
+The effect of postmultiplying by $A_p^k$ is to shift the columns of the preceding matrix right by $kl_r$, and so $C_pA_p^k=\ma{0_{l_r\times kl_r} &I_{l_r}&0_{l_r\times (N-1-k)l_r }}$. Substituting this into (\ref{eqn:XgpSum}) leads to (\ref{eqn:Xgp}). Now substituting (\ref{eqn:Xgp}) into (\ref{eqn:XgrSyl}) leads to (\ref{eqn:Xgr}).
+\end{proof}
+\end{lem}
+
+The following is obtained by substituting (\ref{eqn:Xgp}) and (\ref{eqn:Xgr}) into the definitions for the controller gains $F_2$ and $F_0$.
+
+\begin{cor}[Efficient computation of Full-Information controller gains]
+The matrix $F_2$ may be partitioned (compatibly with $A$) as $F_2=\ma{F_{2g}&F_{2p}&F_{2r}}$ in which $F_{2g}$ is given by (\ref{eqn:F2g}), and 
+\aln{
+F_{2p}&=-{\bar R}^{-1}\ma{B_{2g}'X_{gg}B_{1gr}+D_{12}'D_{11gr} & B_{2g}'S & B_{2g}'A_{cg}'S& \ldots & B_{2g}'{A_{cg}'}^{N-2}S}\label{eqn:F2pEff}\\
+F_{2r}&=-{\bar R}^{-1}\left(  B_{2g}'{A_{cg}'}^{N-1}SC_r+B_{2g}'X_{gr}A_r \right)\label{eqn:F2rEff}
+.}
+If we partition $F_0=\ma{F_{0r}& F_{0w}}$ then:
+\aln{
+F_{0r}=-{\bar R}^{-1}\left(  B_{2g}'X_{gr}B_r+B_{2g}'A_{cg}^{N-1}SD_r \right)\label{eqn:F0reff}\\
+F_{0w}=-{\bar R}^{-1}\left(  B_{2g}'X_{gg}B_{1gw}+D_{12}'D_{11gw} \right)\label{eqn:F0w}
+.}
+\end{cor}
+
+
+\begin{cor}
+As $N\rightarrow \infty$ the control becomes independent of the choice of $W_r$
+\end{cor}
+\begin{pf}
+Since $A_r$ and $A_{cg}$ are asymptotically stable, it follows from standard results that (\ref{eqn:Xgr}) has a unique solution. In the limit as $N\rightarrow\infty$, (\ref{eqn:Xgr}) implies that $X_{gr}=A_{cg}'X_{gr}A_r$ and so in the limit $X_{gr}=0$. Direct substitution into (\ref{eqn:F2rEff}) and (\ref{eqn:F0reff}), while taking the limit as $N\rightarrow \infty$, leads to
+\als{
+F_{2r}=0 \text{ and }  F_{0r}=0 \quad \forall A_r,B_r,C_r,D_r
+,}
+and so the control signal is independent of $W_r$.
+\end{pf}
+
+\begin{rem}
+\label{rem:PrevGainInterp}
+If $x_g$ and $x_r$ are the states of $G$ and $W_r$ respectively, then the optimal control is given by:
+\als{
+u(k)^*&=\underbrace{F_{2g}x_g(k)}_{\mbox{feedback}}+\underbrace{F_{2r}x_r(k)+F_{0r}\eta(k)+F_{0w}w(k)+\sum_{j=0}^{N-1}{F_{2p,j}r(k-N+j)}}_{\mbox{feedforward}}
+\intertext{with}
+F_{2p,0}&=-{\bar R}^{-1}\left(B_{2g}' X_{gg}B_{1gr}+D_{12}'D_{11gr}\right)\\
+F_{2p,j}&=-{\bar R}^{-1}B_{2g}' A_{cg}^{j-1}S \quad 1\leq j\leq N-1.
+}
+\end{rem}
+
+\begin{rem}
+\label{rem:SmallPrevGain}
+The feedback gain, $F_{2g}$, is precisely that which would be obtained if one were to search for a full information controller that minimised $\nrm{T_{w\rightarrow z}}$, with $W_r$ and $\Phi$ removed from the problem description. The choice of feedback control is therefore independent of the preview length.
+\end{rem}
+
+\begin{rem}
+\label{rem:FIminwandr}
+The full-information controller which minimises $\nrm{T_{v\rightarrow z}}_2$ also minimises $\nrm{T_{\eta\rightarrow z}}_2$ and $\nrm{T_{w\rightarrow z}}_2$. This type of relationship is true for any partition of the exogenous disturbance signal in an $\htwo$ full-information generalised regulator problem, and it is not a particular feature of the preview control problem. To see this, note that the two minimisation problems:
+\begin{eqnarray}
+\min_{K_{FI}}\nrm{T_{\eta\rightarrow z}}_2 \label{norm1} \\
+\min_{K_{FI}}\nrm{T_{w\rightarrow z}}_2, \label{norm2}
+\end{eqnarray}
+are related by the choice of $B_1$ and $D_{11}$, and that computation of the controller gain $F_{2}$ is independent of these matrices. The feedforward control gains $F_{0r}$ and $F_{0w}$ can be chosen independently, and so it is possible to simultaneously minimise $\nrm{T_{\eta\rightarrow z}}_2$ and $\nrm{T_{w\rightarrow z}}_2$. Since $\nrm{T_{v \rightarrow z}}_2 = \nrm{T_{\eta\rightarrow z}}_2 + \nrm{T_{w \rightarrow z}}_2$, a controller satisfying (\ref{norm1}) and (\ref{norm2}) also minimizes $\nrm{T_{v \rightarrow z}}_2$.
+\end{rem}
+
