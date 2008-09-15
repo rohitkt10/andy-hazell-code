@@ -1,7 +1,14 @@
 \label{sec:Preproc}
 In this section we consider the problem of designing a feedforward controller. Such a problem may arise if there is no feedback signal, or if we wish to use a preview precompensator to enhance an existing feedback controller. 
 
-It follows from (\ref{proj_prop}) and the fact that a feedforward controller does not alter $T_{w\rightarrow z}$, that $\nrm{T_{\tiny{\ma{w\\ \eta}\rightarrow z}}}_2$ is minimised by choosing the feedforward controller which minimises $\nrm{T_{\eta \rightarrow z}}_2$. Given these observations, we may neglect the influence of $w$ in the design process.
+%It follows from (\ref{proj_prop}) and the fact that a feedforward controller does not alter $T_{w\rightarrow z}$, that $\nrm{T_{[w'\,\, \eta']'\rightarrow z}}_2$ is minimised by choosing the feedforward controller which minimises $\nrm{T_{\eta \rightarrow z}}_2$. 
+
+One could potentially tackle a feedforward problem that is identical to Figure~\ref{fig:DistRejSys} except with the measurement signal $y$ removed, however, if we recall that 
+\als{
+\nrm{T_{{[\eta'\,\,w']'}\rightarrow z}}^2_2 =
+\nrm{T_{w\rightarrow z}}^2_2+
+\nrm{T_{\eta\rightarrow z}}^2_2,}
+and that a feedforward controller does not alter $T_{w\rightarrow z}$, then it follows that $\nrm{T_{[w'\,\, \eta']'\rightarrow z}}_2$ is minimised by choosing the feedforward controller which minimises $\nrm{T_{\eta \rightarrow z}}_2$.  Given these observations, we may neglect the influence of $w$ in the design process.
 
 \begin{figure}
 \begin{center}
@@ -13,7 +20,9 @@ It follows from (\ref{proj_prop}) and the fact that a feedforward controller doe
 \caption{A feedforward controller design problem. The notation follows that of Figure \ref{fig:DistRejSys}.\label{fig:DistRejSysFF}}
 \end{figure}
 
-The problem considered in this section is illustrated in Figure \ref{fig:DistRejSysFF}. By modifying (\ref{eqn:P}), it follows that the appropriate generalised plant is given by:
+The problem considered in this section is illustrated in Figure \ref{fig:DistRejSysFF}. Such a configuration is apparently a special case of Figure~\ref{fig:DistRejSys}, and so it is tempting to try to tackle this problem by using the above general theory with $y$ set to zero (by setting $D_{21gw}$, $D_{21gr}$, $C_{2g}$ and $D_{22g}$ to zero). Unfortunately, such an approach does not succeed because assumption (A5) is violated.
+
+By modifying (\ref{eqn:P}), it follows that the appropriate generalised plant is given by:
 \aln{
 P_{FF}&\shorteq\ma{\arr{cc|c:c}{
 A_g&B_{1gr}C_{d1}&0&B_{2g}\\

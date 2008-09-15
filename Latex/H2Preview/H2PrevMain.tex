@@ -1,11 +1,42 @@
-\documentclass[a4paper,11pt]{article} \input{../../libs/not_ieee.tex}
+\documentclass[a4paper,11pt]{article} 
 %\documentclass[twocolumn]{autart} \input{../../libs/automatica.tex} 
 %\documentclass[journal]{IEEEtran}  \input{../../libs/ieee.tex}
 
 %\usepackage{draftcopy}\draftcopySetGrey{0.92}\setcounter{page}{7}
 
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{arydshln}
+\usepackage{ulem}
+\usepackage{multirow}
 \usepackage{pstricks}
 \usepackage{rotating} 
+\usepackage{natbib}
+
+\newenvironment{pf}[1][\proofname]
+{\begin{proof}[\proofname]}
+{\end{proof}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{alg}{Algorithm}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{cnj}{Conjecture}[section]
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+
+\setlength{\unitlength}{1cm}
+
 
 \input{../../libs/utils.tex}
 \input{./Commands.tex}
