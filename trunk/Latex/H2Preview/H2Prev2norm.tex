@@ -21,7 +21,7 @@ The purpose of this section is to derive an efficient means of computing the min
 
 For the purposes of computing the minimum achievable $\htwo$-norm, we may assume $W_r=I$ without loss of generality. The transformation that enables us to make this assumption is illustrated in Figure~\ref{fig:AbsorbWr}. The design problem involving $\hat K$ and $\hat G$ is clearly a problem of the class of Figure \ref{fig:DistRejSys}, but without a pre-filter. The achievable $\htwo$-norm will be the same in either case, and in this section we will work with the simpler problem setup, where it is assumed that $W_r$ has been absorbed into $\hat G$ and $\hat K$. This transformation is not used in the preceding sections because it obscures the impact of $W_r$ on the control signal, and because we would be required to perform further manipulations in order to remove the additional controller states resulting from the extra copy of $W_r$. 
 
-The results of the previous section can be adapted for the case where $W_r=I$. 
+It is easy to check that the results of the previous sections carry over for $W_r=I$. All that is required is to remove the  gains associated with the states of $W_r$.
 
 We note again that:
 % 
@@ -79,9 +79,9 @@ F_{2p0}=-\bar R^{-1}\left(B_{2g}'X_{gg}B_{1gr}+D_{12}'D_{11gr}\right). \label{eq
 \end{equation}
 %
 Combining this with (\ref{eqn:gamrmedeff}), and using (\ref{eqn:Xgp}), leads to 
-\als{
-\nrm{T_{r\rightarrow z}}^2_2=\tra{\underbrace{B_{1gr}'X_{gg}B_{1gr}+D_{11gr}'D_{11gr}-F_{2p0}'\bar{R}F_{2p0}}_{\mbox{No preview}}-\underbrace{\sum_{j=0}^{N-1}S' A^j_{cg} B_{2g}{\bar R}^{-1} B_{2g}'{A^j_{cg}}'S}_{\mbox{Preview reduction}}}.
-}
+\aln{
+\nrm{T_{r\rightarrow z}}^2_2=\tra{\underbrace{B_{1gr}'X_{gg}B_{1gr}+D_{11gr}'D_{11gr}-F_{2p0}'\bar{R}F_{2p0}}_{\mbox{Zero preview}}-\underbrace{\sum_{j=0}^{N-1}S' A^j_{cg} B_{2g}{\bar R}^{-1} B_{2g}'{A^j_{cg}}'S}_{\mbox{Preview reduction}}}.
+\label{eqn:H2CostSplit}}
 In order to judge how much preview to use, we need to know the value of the maximum possible improvement due to preview action. Suppose the matrix $\Gamma$ satisfies:
 \als{
 \Gamma=A_{cg}\Gamma A_{cg}'+B_{2g}\bar R^{-1}B_{2g}'
@@ -90,9 +90,11 @@ which implies that:
 \als{
 \Gamma=\sum_{j=0}^{\infty}A_{cg}^jB_{2g}\bar R ^{-1}B_{2g}'{A_{cg}'}^{j}
 .}
-Thus the reduction in $\nrm{T_{r\rightarrow z}}_2^2$ due to preview is bounded above by 
+Comparing this to (\ref{eqn:H2CostSplit}), it follows that the reduction in $\nrm{T_{r\rightarrow z}}_2^2$ due to preview is bounded above by 
 \[
 \tra{S'\Gamma S},
 \]
-and evaluating this limit only requires the solution of an $n_g$-dimensional Lyapunov equation.
-This provides a useful bound on the achievable norm reduction one might obtain using preview. For example, one could continue adding preview points, until 95\%  of the maximum possible benefit had been achieved. 
+and evaluating this limit only requires the solution of an $n_g$-dimensional Lyapunov equation (in addition to the $n_g$ dimensional DARE required to evaluate $S$). The following quantity provides a useful measure of the fraction of the maximum norm reduction that has been achieved:
+\aln{\gamma_{\,_{\%,imp}}=100\times \tra{S'\Gamma S}^{-1}{\left(\sum_{j=0}^{N-1}S' A^j_{cg} B_{2g}{\bar R}^{-1} B_{2g}'{A^j_{cg}}'S\right)}.\label{eqn:gamimp}} 
+%This provides a useful bound on the achievable norm reduction one might obtain using preview. 
+This can be used to determine how much preview to use; for example, one might continue adding preview points until $\gamma_{\,_{\%,imp}} >99\%$.
