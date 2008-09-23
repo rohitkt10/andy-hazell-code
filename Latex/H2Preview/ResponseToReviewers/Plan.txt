@@ -25,14 +25,14 @@ If, on the other hand, the purpose of adding an example is purely to convince th
 
 To Do
 ====
-- add to google code
-- Design insights: Merge changes from thesis 
-- Is the trace formula (eqn 3) in need of squaring?
+- add to google code-->done
+- Design insights: Merge changes from thesis --> edit/check integral action
+- Is the trace formula (eqn 3) in need of squaring? -->done
 - FI : correct 2-norm sum error --> done
 - H2norm: 
-	-Merge most changes from thesis, but don't include example. 
-	-Add gam_%,imp definition and associated paras
-	-Consider moving section intro to the main intro.
+	-Merge most changes from thesis, but don't include example. -->done
+	-Add gam_%,imp definition and associated paras -->done
+	-Consider moving section intro to the main intro. -->?
 - Simple example: merge changes from thesis -> done 
 - Feedforward solution: copy intro paras from thesis --> done 
 - Output feedback and efficient implementation: no changes
@@ -41,5 +41,5 @@ To Do
 	- Major re-writing of conclusions to emphasise contribution. The statement that "The purpose of the present work
 is to embed a class of preview control problems in a generalized regulator
 configuration" is quite misleading I think. This is purely a means to an end, not the end in itself. 
-- Add reference to examples in thesis
+- Add reference to examples in thesis 
 
