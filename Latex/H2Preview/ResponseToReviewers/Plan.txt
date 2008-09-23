@@ -1,7 +1,7 @@
 
-In earlier work on discrete-time H2/LQG preview control, the theoretical results have been developed with reference to particular applications, which has led to restrictions in the classes of problems which may be tackled by these results. To the best of the authors knowledge, there is no single reference which provides a complete set of tools for synthesising H2 preview controllers that solve realistic design problems. This is the purpose of the present work. In pursuit of this goal, we solve a very general preview problem, within which more complex preview problems may be embedded, such as the preview tracking with integral action problem illustrated in Figure ??? . Contributions made by this paper include:
+In earlier work on discrete-time H2/LQG preview control, the theoretical results have been developed with reference to particular applications, which has led to restrictions in the classes of problems which may be tackled by these results. To the best of the authors knowledge, there is no single reference which provides a complete set of tools for synthesising H2 preview controllers that solve realistic design problems. This is the purpose of the present work. In pursuit of this goal, we solve a very general preview problem, within which more complex preview problems may be embedded, such as the preview tracking with integral action problem illustrated in Figure 14. Contributions made by this paper include:
 
-1. a first complete solution to the preview problem in Figure ???;
+1. a first complete solution to the preview problem in Figure 1;
 2. an efficient method for finding the H2 norm of the closed-loop system;
 3. a method for evaluating the norm reduction due to preview as N -> inf;
 4. a low-order output feedback controller implementation;
@@ -15,16 +15,15 @@ As the reviewers suggest, both and Tadmor & Mirkin and Zhang & Xie consider a  s
 
 Reviewer 1 suggests that the full information and output feedback sections may be merged. However, the vast majority of the full information section is concerned with efficient computation of the full information controller gain matrices, which must also be computed for the output feedback controller. We therefore feel that merging these sections would lead to little length reduction and could damage the clarity of the exposition.
 
-The associate editor suggests that the Reviewers would like some experimental results included. However, we have not found any reference to such a request within the reviewers comments. In our view, the purpose of this paper is not to make the case for using Preview Control in practical applications - that case has already been made by many papers appearing in the literature - but instead to extend the class of problems which can be tackled, and to provide a single clear and generic framework on which to base Preview Controller designs. As such, it is our opinion that adding a case study would add considerable length without adding much value. We have now included a reference and a link to the first author's thesis, which does contain several substantial case studies that employ the algorithms described in this paper. 
+The associate editor suggests that the Reviewers would like some experimental results included. However, we have not found any reference to such a request within the reviewers comments. In our view, the purpose of this paper is not to make the case for using Preview Control in practical applications - that case has already been made by many papers appearing in the literature - but instead to extend the class of problems which can be tackled, and to provide a single clear and generic framework on which to base Preview Controller designs. As such, it is our opinion that including a case study may add considerable length without necessarily adding much value. We have now included a reference and a link to the first author's thesis, which does contain several substantial case studies that employ the algorithms described in this paper. 
 
 If, on the other hand, the purpose of adding an example is purely to convince the reader that the algorithms work, then the example already given in section 8.2 should fulfill that role.
 
 
 
-
-
 To Do
 ====
+- chnage thesis reference to inlucde link
 - add to google code-->done
 - Design insights: Merge changes from thesis --> edit/check integral action
 - Is the trace formula (eqn 3) in need of squaring? -->done

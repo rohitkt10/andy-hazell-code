@@ -118,9 +118,10 @@ Figure~\ref{fig:ReducingControlWithIncreasingN} illustrates the influence of pre
 \item[Integral action with output feedback.]
 An output-feedback tracking controller with integral action is described by Figure \ref{fig:TrackSysIntegDesign}, which also serves to
 illustrate the complexity of problems that may be tackled  using the framework in Figure 1. The integrated error signal must be included in the measurements in order to ensure that the integrator state is detectable. 
+
 Tuning the relative magnitudes of $W_{e1}$ and $W_{e2}$ is akin to adjusting the gains in a PI controller. The ability to adjust the integral gain is useful, because too much integral action can be detrimental to stability and/or the transient response. In fact a `derivative' signal could also be added, thus completing the PID analogy and facilitating tuning of the preview controller. 
 
-Previous approaches to the addition of integral action have done so in an \ac{LQG} setting through the use of the differentiated control signal in the cost function \citep[e.g. ][]{Tomizuka_1979_IntegralPreviewFI,Katayama_1987_PreviewAndIntegral,Tomi_1980_FFPrev}. Such an approach does not allow one to adjust the strength of the integral action, which could lead to difficulty in satisfying stability/performance requirements. 
+Previously, the addition of integral action has been approached in an {LQG} setting through the use of the differentiated control signal in the cost function \citep[e.g. ][]{Tomizuka_1979_IntegralPreviewFI,Katayama_1987_PreviewAndIntegral,Tomi_1980_FFPrev}. Such an approach does not allow one to adjust the strength of the integral action, which could lead to difficulty in satisfying stability/performance requirements. 
 
 
 \begin{figure}
