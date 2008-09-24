@@ -30,7 +30,7 @@ A discrete-time FIR transfer function can be realised using a shift-register to 
 \end{center}
 \end{figure}}
 \item[The optimal control is independent of $W_r$ for large $N$]
-This phenomenon was first noticed in \cite{Tomizuka_1975_OptDiscretePreview}, with a proof provided in Section \ref{sec:H2FI}. It is instructive to consider the influence of $W_r$ from a stochastic perspective. Since $\eta$ is assumed to be a realisation of a white-noise process, then a dynamic $W_r$ provides statistical information on future values of $r$. If, for example, $W_r$ is low-pass, the $r(k)$'s will become correlated and hence $W_r$ will introduce `statistical preview' beyond the preview horizon. We would therefore expect $W_r$ to reduce the need for preview, and also that its influence on the control would decline as $N$ tends to infinity.
+This phenomenon was first noticed in \cite{Tomizuka_1975_OptDiscretePreview}, with a proof provided in Section \ref{sec:H2FI}. It is instructive to consider the influence of $W_r$ from a stochastic perspective. Since $\eta$ is assumed to be a realisation of a white-noise process, then a dynamic $W_r$ provides statistical information on future values of $r$. If, for example, $W_r$ is low-pass, the $r(k)$'s become correlated and hence $W_r$ introduces `statistical preview' beyond the preview horizon. We would therefore expect $W_r$ to reduce the need for preview, and also that its influence on the control would decline as $N$ tends to infinity.
 \item[The optimal $\nrm{T_{w\rightarrow z}}_2$ is independent of $W_r$.]
 In contrast with the $\hinf$ case \cite{Hazell_2007_DiscreteHinfPreview}, there is no conflict between the rejection of $w$ and the rejection of $\eta$; a proof of this is provided in Section \ref{sec:H2OF}.
 \item[Noisy preview signals require a high-order controller.]
@@ -71,7 +71,7 @@ We search for a $K$ which minimises $\nrm{T_{\eta\rightarrow z}}_{2,\infty}$, or
 Clearly this represents a tracking problem in which minimisation of tracking errors must be balanced against  excessive control requirements. The transfer functions $W_r$ and $W_e$ may be chosen to reflect, respectively, the expected frequency content of $r$, and the importance of achieving good tracking at a given frequency. We will now use this example to illustrate some general properties of $\htwo$ preview tracking controllers.
 
 \begin{description}
-\item[Preview improves steady-state disturbance rejection.] 
+\item[Preview improves steady-state tracking.] 
 Figure~\ref{fig:BetterSSWithIncN} illustrates the `non-responsiveness' of the closed-loop system in the case of no reference weight, and a low preview horizon. In the limiting case, where there is zero preview and no reference weighting, the controller does not have any information about the value of the reference at the next time step, and so it cannot make a decision about the direction in which to send the plant. Therefore, the tracking error cost cannot be reduced, and so the optimal controller can only minimise the control cost, leading to a choice of $u=0$.
 
 Alternatively, as $N\rightarrow \infty$, then the steady state error tends towards zero (in the absence of disturbances or modelling errors). 
@@ -92,7 +92,7 @@ The effect of a low-pass $W_r$ is illustrated in Figure~\ref{fig:WrWithIncreasin
 \end{figure}
 \item[Tracking-error filtering.]
 Consider the Full Information controller synthesis problem illustrated in Figure~\ref{fig:PrevTrackSysFI} and let $W_e$ be a dynamic
-tracking-error filter. A low-pass weight on the tracking error improves the steady-state tracking performance, without needing to change the assumed frequency content of the reference signal (i.e. without changing $W_r$). Even if $W_r=1$,  the inclusion of a low-pass tracking-error filter ($W_e$) ensures that the low-frequency components of $r$ will be tracked accurately, in contrast to Figure~\ref{fig:BetterSSWithIncN}. This is accomplished via feedback based on the states of $W_e$, which is low-pass and so there is no initial `spike' in the control signal -- see Figure \ref{fig:ReducingControlWithIncreasingN}. 
+tracking-error filter. A low-pass weight on the tracking error improves the low-frequency tracking performance, without needing to change the assumed frequency content of the reference signal (i.e. without changing $W_r$). Note that a step change in the reference does not lead to a `spike' in the control signal -- see Figure \ref{fig:ReducingControlWithIncreasingN}. 
 \item[Improving the low-frequency tracking behaviour.]
 It appears that there are three alternative ways of improving the low-frequency tracking behaviour, which could be used alone or in combination: (A) use a long preview horizon; (B) add a low-pass reference filter, and (C) introduce a low-pass tracking-error filter. These alternatives are illustrated in Figure~\ref{fig:CompWzWrNormForSimilarResp}. In order to achieve a fair comparison, $W_e$ was scaled so that the resulting closed loops achieved approximately similar rise times. The tracking-error filter achieves good steady-state performance without excessive control, or large control spikes.
 However, the introduction of a tracking-error filter tends to introduce additional phase lag, which can have a deleterious effect on the loop's robust stability. In contrast, the feedback part of the controller is independent of $W_r$, which means that a reference filter can be used without jeopardising stability.  
@@ -108,7 +108,7 @@ Figure~\ref{fig:ReducingControlWithIncreasingN} illustrates the influence of pre
 \includegraphics[width=\columnwidth]{./diags/ReducingControlWithIncreasingN.eps}
 \caption{Closed-loop response of the example system described in (\ref{example}) and Figure~\ref{fig:PrevTrackSysFI}; the weighting functions are $W_r=1$ and $W_e=100/(1-\z)$. The plotted output is the signal $z_g$ in Figure~\ref{fig:PrevTrackSysFI}, and is relatively insensitive to the preview horizon. The control signal becomes `spread out', and lower in amplitude, as the preview horizon is increased. \label{fig:ReducingControlWithIncreasingN}}
 \end{figure}
-\item[Preview only improves low frequency tracking performance.] For a low-pass plant, high frequency tracking performance is limited by the prohibitive size of the control action, which is a fundamental feature of the plant and cannot be changed by anticipative action. This effect is illustrated in Figure~\ref{fig:sigmah2}. In this example, preview improves the low-frequency performance by reducing the magnitude of both the tracking error and the control signal. %The price for this improvement appears to be larger control action at higher frequencies
+\item[Preview only improves low frequency tracking performance.] For a low-pass plant, high frequency tracking performance is limited by the prohibitive size of the control action. This is a fundamental feature of the plant and cannot be changed by anticipative action. This effect is illustrated in Figure~\ref{fig:sigmah2}, where preview improves the low-frequency performance by reducing the magnitude of both the tracking error and the control signal. %The price for this improvement appears to be larger control action at higher frequencies
 \begin{figure}
 \subfloat[Unweighted plant]{\includegraphics[width=\columnwidth]{./diags/UnweightedSigmaH2.eps}}
 
@@ -117,9 +117,10 @@ Figure~\ref{fig:ReducingControlWithIncreasingN} illustrates the influence of pre
 \end{figure}
 \item[Integral action with output feedback.]
 An output-feedback tracking controller with integral action is described by Figure \ref{fig:TrackSysIntegDesign}, which also serves to
-illustrate the complexity of problems that may be tackled  using the framework in Figure 1. The integrated error signal must be included in the measurements in order to ensure that the integrator state is detectable. 
+illustrate the complexity of problems that may be tackled  using the framework in Figure 1. Note that the integrated error signal must be included in the measurements in order to ensure that the integrator state is detectable. 
 
-Tuning the relative magnitudes of $W_{e1}$ and $W_{e2}$ is akin to adjusting the gains in a PI controller. The ability to adjust the integral gain is useful, because too much integral action can be detrimental to stability and/or the transient response. In fact a `derivative' signal could also be added, thus completing the PID analogy and facilitating tuning of the preview controller. 
+Tuning the relative magnitudes of $W_{e1}$ and $W_{e2}$ is akin to adjusting the gains in a PI controller. %The ability to adjust the integral gain is useful, because too much integral action can be detrimental to stability and/or the transient response. 
+In fact a `derivative' signal could also be added, thus completing the PID analogy and facilitating tuning of the preview controller. 
 
 Previously, the addition of integral action has been approached in an {LQG} setting through the use of the differentiated control signal in the cost function \citep[e.g. ][]{Tomizuka_1979_IntegralPreviewFI,Katayama_1987_PreviewAndIntegral,Tomi_1980_FFPrev}. Such an approach does not allow one to adjust the strength of the integral action, which could lead to difficulty in satisfying stability/performance requirements. 
 
@@ -143,12 +144,3 @@ whose 2-norm is to be minimised; $y=\left[y_1'\,\,y_2'\right]'$ is the measureme
 \end{figure}
 
 \end{description}
- 
-
-
- 
-
-
-
-
-

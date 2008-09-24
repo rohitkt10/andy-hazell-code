@@ -23,9 +23,10 @@ If, on the other hand, the purpose of adding an example is purely to convince th
 
 To Do
 ====
+- CHECKED TO P29
 - chnage thesis reference to inlucde link
 - add to google code-->done
-- Design insights: Merge changes from thesis --> edit/check integral action
+- Design insights: Merge changes from thesis --> done
 - Is the trace formula (eqn 3) in need of squaring? -->done
 - FI : correct 2-norm sum error --> done
 - H2norm: 

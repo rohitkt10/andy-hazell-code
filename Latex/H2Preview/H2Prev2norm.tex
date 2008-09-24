@@ -57,13 +57,12 @@ and so using equation (\ref{eqn:2normcomp}) we may write:
 %
 Our next task is to find an efficient method for computing $B_p'X_{pp}B_p$. Using the $W_r=I$ version of (\ref{eqn:Xdd}), we can write:
 \als{
-X_{pp}&=A_p'X_{pp}A_p+\hat Q-F_{2p}'\bar{R}F_{2p}\\
-\mbox{in which} \\
+X_{pp}&=A_p'X_{pp}A_p+\hat Q-F_{2p}'\bar{R}F_{2p}}
+in which
+\als{
 \hat Q &= C_{p}'B_{1gr}'X_{gg}B_{1gr}C_{p}+A_p'X_{gp}'B_{1gr}C_{p}+C_{p}'B_{1gr}'X_{gp}A_p+C_{p}'D_{11gr}'D_{11gr}C_{p}.
 }
-
 Substituting this into itself leads to:
-
 \als{
 X_{pp}=\sum^{N-1}_{j=0}{A_p^j}'(\hat Q - F_{2p}'\bar{R}F_{2p})A_p^j.
 }
@@ -90,7 +89,7 @@ which implies that:
 \als{
 \Gamma=\sum_{j=0}^{\infty}A_{cg}^jB_{2g}\bar R ^{-1}B_{2g}'{A_{cg}'}^{j}
 .}
-Comparing this to (\ref{eqn:H2CostSplit}), it follows that the reduction in $\nrm{T_{r\rightarrow z}}_2^2$ due to preview is bounded above by 
+Comparing this to (\ref{eqn:H2CostSplit}), it follows that the maximum reduction in $\nrm{T_{r\rightarrow z}}_2^2$ due to preview is given by: 
 \[
 \tra{S'\Gamma S},
 \]

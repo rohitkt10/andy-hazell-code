@@ -1,0 +1,129 @@
+
+\newcommand{\ssmod}[9]{
+        \ma{\begin{array}{c|c c}
+        #1 & #2 & #3\\ \hline
+        #4 & #6 & #7\\
+        #5 & #8 & #9
+        \end{array}}}
+
+\newcommand{\ssmodf}[4]{
+        \ma{\begin{array}{c|c }
+        #1 & #2 \\ \hline
+        #3 & #4
+        \end{array}}}
+
+\newcommand{\arr}[2]{
+        \begin{array}{#1}
+        #2
+        \end{array}}
+
+\newcommand{\grad}{\ensuremath{^{\circ}}}
+\newcommand{\shorteq}{\stackrel{s}{=}}
+\newcommand{\linf}{\mathcal l_\infty}
+\newcommand{\ltwo}{\mathcal l_2}
+\newcommand{\Linf}{\mathcal L_\infty}
+\newcommand{\Ltwo}{\mathcal L_2}
+\renewcommand{\d}{$\delta$}
+\newcommand{\diff}[1]{\frac{\textrm{d}}{\textrm{d}#1}}
+
+
+\newcommand{\nrm}[1]{\left|\left| #1 \right|\right|}
+
+\newcommand{\ma}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\als}[1]{\begin{align*} #1 \end{align*}}
+\newcommand{\mls}[1]{\begin{multline*} #1 \end{multline*}}
+\newcommand{\mln}[1]{\begin{multline} #1 \end{multline}}
+\newcommand{\aln}[1]{\begin{align} #1 \end{align}}
+\newcommand{\spl}[1]{\begin{split} #1 \end{split}}
+\newcommand{\tra}[1]{\textrm{Tr}\left\{ #1 \right\}}
+\newcommand{\szo}[2]{#1\in \mathbb{R}^{#2}}
+\newcommand{\til}[1]{\tilde{ #1}}
+\newcommand{\hinf}{\mathcal H_\infty}
+\newcommand{\htwo}{\mathcal H_2}
+
+\newcommand{\stdcontrolfrags}{
+\psfrag{G}{$G$}
+\psfrag{K}{$K$}
+\psfrag{P}{$P$}
+%\psfrag{+}{$+$}
+%\psfrag{-}{$-$}
+\psfrag{M_0}{$M_0$}
+\psfrag{Phi}{$\Phi$}
+\psfrag{w}{$w$}
+\psfrag{z}{$z$}
+\psfrag{e}{$e$}
+\psfrag{y}{$y$}
+\psfrag{u}{$u$}
+\psfrag{r}{$r$}
+\psfrag{w(k)}{$w(k)$}
+\psfrag{z(k)}{$z(k)$}
+\psfrag{e(k)}{$e(k)$}
+\psfrag{y(k)}{$y(k)$}
+\psfrag{u(k)}{$u(k)$}
+\psfrag{r(k)}{$r(k)$}
+\psfrag{W_w}{$W_w$}
+\psfrag{W_r}{$W_r$}
+\psfrag{W_z}{$W_z$}
+\psfrag{I}{$I$}
+\psfrag{eta}{$\eta$}
+\psfrag{Sigma}{$\Sigma$}
+}
+
+
+\newlength{\colL}
+\newlength{\colR}
+
+\newcommand{\sbs}[3]{
+\begin{minipage}{0.98\columnwidth}
+
+\setlength{\colL}{#1\columnwidth}
+\addtolength{\colL}{-0.01\columnwidth}
+\setlength{\colR}{0.99\columnwidth}
+\addtolength{\colR}{-#1\columnwidth}
+
+\begin{minipage}{\colL}
+#2
+\end{minipage}
+\begin{minipage}{\colR}
+#3
+\end{minipage}
+\end{minipage}
+}
+
+
+\newcommand{\indentitem}[1]{
+\begin{itemize}\item[] #1\end{itemize}
+}
+
+\newcommand{\robustscalebox}[2]{
+\scalebox{#1}{
+\begin{minipage}{\columnwidth}
+#2
+\end{minipage}}
+}
+\newcommand{\radd}[1]{
+%\emph{
+{\color{blue}#1}%}
+}
+\newcommand{\rmdel}[1]{
+{\color{red}#1}}
+\newcommand{\rdel}[1]{
+  {\color{red}{\sout{#1}}}}
+% \newcommand{\sbstab}[2]{
+% \begin{tabular}{lc}
+% #1 & #2
+% \end{tabular} 
+% }
+
+\newcommand{\scalefig}[4][1]{
+\begin{figure}
+   \begin{center}
+       \scalebox{#1}{\includegraphics[width=#3\hsize]{#2}}
+   \end{center}
+   \caption{#4}
+\end{figure} 
+}
+
+\newcommand{\scalegraphics}[3][1]{
+       \scalebox{#1}{\includegraphics[width=#3\hsize]{#2}}
+}
