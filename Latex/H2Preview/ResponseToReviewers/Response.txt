@@ -1,4 +1,3 @@
-
 In earlier work on discrete-time H2/LQG preview control, the theoretical results have been developed with reference to particular applications, which has led to restrictions in the classes of problems which may be tackled by these results. To the best of the authors knowledge, there is no single reference which provides a complete set of tools for synthesising H2 preview controllers that solve realistic design problems. This is the purpose of the present work. In pursuit of this goal, we solve a very general preview problem, within which more complex preview problems may be embedded, such as the preview tracking with integral action problem illustrated in Figure 14. Contributions made by this paper include:
 
 1. a first complete solution to the preview problem in Figure 1;
@@ -20,31 +19,9 @@ The associate editor suggests that the Reviewers would like some experimental re
 If, on the other hand, the purpose of adding an example would be simply to convince the reader that the algorithms work, then the example already given in section 8.2 should fulfill that role.
 
 References:
+=========
 A. Hazell and D. J. N. Limebeer. An efficient algorithm for discrete-time Hinfinity preview control. Automatica, 44(9):2441–2448, 2008.
 
 G. Tadmor and L. Mirkin. Hinf control and estimation with preview-part II: fixed-size ARE solutions in discrete time. IEEE Trans Auto Control, 50(1):29–40, 2005.
 
 H. Zhang, L. Xie, and G. Duan. Hinfinity control of discrete-time systems with multiple input delays. IEEE Trans Auto Control, 52(2):271–283, 2007.
-
-To Do
-====
-- CHECKED TO P29
-- chnage thesis reference to inlucde link
-- add to google code-->done
-- Design insights: Merge changes from thesis --> done
-- Is the trace formula (eqn 3) in need of squaring? -->done
-- FI : correct 2-norm sum error --> done
-- H2norm: 
-	-Merge most changes from thesis, but don't include example. -->done
-	-Add gam_%,imp definition and associated paras -->done
-	-Consider moving section intro to the main intro. -->?
-- Simple example: merge changes from thesis -> done 
-- Feedforward solution: copy intro paras from thesis --> done 
-- Output feedback and efficient implementation: no changes
-- Conclusions
-	- Add reference to Preview control toolbox
-	- Major re-writing of conclusions to emphasise contribution. The statement that "The purpose of the present work
-is to embed a class of preview control problems in a generalized regulator
-configuration" is quite misleading I think. This is purely a means to an end, not the end in itself. 
-- Add reference to examples in thesis 
-

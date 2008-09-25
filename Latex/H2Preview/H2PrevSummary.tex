@@ -22,14 +22,13 @@ A discrete-time FIR transfer function can be realised using a shift-register to 
 \psfrag{r}{$r(k)$}
 \psfrag{y}{$y(k)$}
 \psfrag{u}{$u(k)$}
-\psfrag{xp}{$\ma{r(k-N)\\\vdots\\r(k-1)}$}
+\psfrag{xpr}{$\ma{r(k-N)\\\vdots\\r(k)}$}
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.5\columnwidth]{./diags/PrevContStructxpKbar.eps}
+\includegraphics[width=0.42\columnwidth]{./diags/PrevContStructxpKbar.eps}
 \caption{\label{fig:PrevContStructxp} The structure of the $\htwo$-optimal discrete-time preview controller. The signal $u(k)$ is the control, the measurement is $y(k)$, and $r(k)$ is the future-most value of the previewable disturbance.}
 \end{center}
-\end{figure}}
-\item[The optimal control is independent of $W_r$ for large $N$]
+\end{figure}}\item[The optimal control is independent of $W_r$ for large $N$]
 This phenomenon was first noticed in \cite{Tomizuka_1975_OptDiscretePreview}, with a proof provided in Section \ref{sec:H2FI}. It is instructive to consider the influence of $W_r$ from a stochastic perspective. Since $\eta$ is assumed to be a realisation of a white-noise process, then a dynamic $W_r$ provides statistical information on future values of $r$. If, for example, $W_r$ is low-pass, the $r(k)$'s become correlated and hence $W_r$ introduces `statistical preview' beyond the preview horizon. We would therefore expect $W_r$ to reduce the need for preview, and also that its influence on the control would decline as $N$ tends to infinity.
 \item[The optimal $\nrm{T_{w\rightarrow z}}_2$ is independent of $W_r$.]
 In contrast with the $\hinf$ case \cite{Hazell_2007_DiscreteHinfPreview}, there is no conflict between the rejection of $w$ and the rejection of $\eta$; a proof of this is provided in Section \ref{sec:H2OF}.
@@ -108,7 +107,7 @@ Figure~\ref{fig:ReducingControlWithIncreasingN} illustrates the influence of pre
 \includegraphics[width=\columnwidth]{./diags/ReducingControlWithIncreasingN.eps}
 \caption{Closed-loop response of the example system described in (\ref{example}) and Figure~\ref{fig:PrevTrackSysFI}; the weighting functions are $W_r=1$ and $W_e=100/(1-\z)$. The plotted output is the signal $z_g$ in Figure~\ref{fig:PrevTrackSysFI}, and is relatively insensitive to the preview horizon. The control signal becomes `spread out', and lower in amplitude, as the preview horizon is increased. \label{fig:ReducingControlWithIncreasingN}}
 \end{figure}
-\item[Preview only improves low frequency tracking performance.] For a low-pass plant, high frequency tracking performance is limited by the prohibitive size of the control action. This is a fundamental feature of the plant and cannot be changed by anticipative action. This effect is illustrated in Figure~\ref{fig:sigmah2}, where preview improves the low-frequency performance by reducing the magnitude of both the tracking error and the control signal. %The price for this improvement appears to be larger control action at higher frequencies
+\item[Preview only improves low frequency tracking performance.] For a low-pass plant, high frequency tracking performance is limited by the prohibitive amplitude of the control action. This is a fundamental feature of the plant and cannot be changed by anticipative action. This effect is illustrated in Figure~\ref{fig:sigmah2}, where preview improves the low-frequency performance by reducing the magnitude of both the tracking error and the control signal. %The price for this improvement appears to be larger control action at higher frequencies
 \begin{figure}
 \subfloat[Unweighted plant]{\includegraphics[width=\columnwidth]{./diags/UnweightedSigmaH2.eps}}
 
@@ -122,7 +121,7 @@ illustrate the complexity of problems that may be tackled  using the framework i
 Tuning the relative magnitudes of $W_{e1}$ and $W_{e2}$ is akin to adjusting the gains in a PI controller. %The ability to adjust the integral gain is useful, because too much integral action can be detrimental to stability and/or the transient response. 
 In fact a `derivative' signal could also be added, thus completing the PID analogy and facilitating tuning of the preview controller. 
 
-Previously, the addition of integral action has been approached in an {LQG} setting through the use of the differentiated control signal in the cost function \citep[e.g. ][]{Tomizuka_1979_IntegralPreviewFI,Katayama_1987_PreviewAndIntegral,Tomi_1980_FFPrev}. Such an approach does not allow one to adjust the strength of the integral action, which could lead to difficulty in satisfying stability/performance requirements. 
+Previously, the addition of integral action has been approached in an {LQG} setting through the use of the differentiated control signal in the cost function \citep[e.g. ][]{Tomizuka_1979_IntegralPreviewFI,Katayama_1987_PreviewAndIntegral,Tomi_1980_FFPrev}. Such an approach does not allow one to adjust the strength of the integral action, which is likely to lead to difficulty in satisfying stability/performance requirements. 
 
 
 \begin{figure}
