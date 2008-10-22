@@ -1,30 +1,8 @@
 \label{sec:Conclusions}
-\textit{This needs re-writing to emphasise contribution. The statement that "The purpose of the present work
-is to embed a class of preview control problems in a generalized regulator
-configuration" is quite misleading I think. This is purely a means to an end, not the end in itself. }
+Preview control has been studied for at least four decades and a large number of theoretical results can be found in the control and mechanical engineering technical literature. In many cases the theoretical developments on discrete-time $\htwo$/LQG were driven by applications problems. Contemporary applications include for example active automotive suspension control \cite{Roh_1999_Stoc_Opt_Prev,Marzbanrad_2004_SuspPrev}, helicopter flight control \cite{Paulino_2006_PreviewRotorcraftAffine}, 
+and driver steering control \cite{Cole_2006_PredictiveAndPreviewSteeringControl}.
+Other applications examples, which are also related to vehicle dynamics problems, can be found in the first author's thesis; visit \url{http://code.google.com/p/preview-control-toolbox/}. A MATLAB Preview Control toolbox implementation of the presented algorithms together with their $\hinf$ counterpart can also be obtained this site.
 
-\textit{Also need to reference case studies in thesis}
+In the authors' opinion the strong influence of applications problems has produced a body of theory that is example-specific and consequently somewhat restricted in terms of its scope and generality. To the best of our knowledge a complete set of tools for synthesising $\htwo$ preview controllers that solve broad range of realistic design problems is unavailable in the open literature. The provision of these tools is the central purpose of the work presented here. We present a general preview problem that captures most of the results in the contemporary literature, as well as offering a solution framework for more complex preview problems such as the preview tracking with integral action problem illustrated in Figure \ref{fig:TrackSysIntegDesign}.
 
-
-Preview control has been studied for over three decades and many theoretical results can be found in the technical literature. Preview control has also been employed in a variety of contempory applications in mechanical engineering. These include active automotive suspension control \cite{Roh_1999_Stoc_Opt_Prev,Marzbanrad_2004_SuspPrev}, helicopter flight control \cite{Paulino_2006_PreviewRotorcraftAffine}, 
-and driver steering control \cite{Cole_2006_PredictiveAndPreviewSteeringControl}. The purpose of the present work is to embed a class of preview control problems in a generalized regulator configuration \cite{LimebeerGreen,ZDG}. The open-loop system is controlled by a two-degree-of-freedom controller, which optimizes the system response to a combination of previewable and non-previewable exogenous inputs. Efficient algorithms have been presented for solving the two standard LQG Riccati equations, as well as computing the perfect information controller gains. The associated state estimator is low order with degree $n_g+n_r$. A detailed analysis of the achievable $\htwo$-norm cost reduction due to preview is also presented. The paper concludes with a summary of the main features of $\htwo$ preview control as well as some useful design insights.
-
-========================
-Beginnings of a re-write:
-
-
-Preview control has been studied for over three decades and a number of theoretical results can be found in the technical literature. Preview control has also been employed in a variety of contempory applications in mechanical engineering. These include active automotive suspension control \cite{Roh_1999_Stoc_Opt_Prev,Marzbanrad_2004_SuspPrev}, helicopter flight control \cite{Paulino_2006_PreviewRotorcraftAffine}, 
-and driver steering control \cite{Cole_2006_PredictiveAndPreviewSteeringControl}. In earlier work on discrete-time H2/LQG preview control, the theoretical results have been developed with reference to particular applications, which has led to restrictions in the classes of problems which may be tackled by these results. To the best of the authors knowledge, there is no single reference which provides a complete set of tools for synthesising $\htwo$ preview controllers that solve realistic design problems. This is the purpose of the present work. In pursuit of this goal, we solve a very general preview problem, within which more complex preview problems may be embedded, such as the preview tracking with integral action problem illustrated in Figure \ref{fig:TrackSysIntegDesign}.
-In our solution, the open-loop system is controlled by a two-degree-of-freedom controller, which optimizes the system response to a combination of previewable and non-previewable exogenous inputs. Efficient algorithms have been presented for solving the two standard LQG Riccati equations, as well as computing the perfect information controller gains.
-
-Contributions made by this paper include:
-\begin{enumerate}
-\item a first complete solution to the preview problem in Figure 1;
-\item an efficient method for finding the $\htwo$ norm of the closed-loop system;
-\item a method for evaluating the norm reduction due to preview as $N \rightarrow \infty$;
-\item a low-order output-feedback controller implementation;
-\item a low-order feedforward controller implementation.
-\end{enumerate}
-
-A MATLAB Preview Control toolbox, for the given algorithm and its $\hinf$ counterpart, can be obtained from: %\url{http://www3.imperial.ac.uk/controlandpower/research/portfoliopartnership/projects/preview_control}
-\url{http://code.google.com/p/preview-control-toolbox/}, where the first author's thesis may also be found.
+The preview control problem studied in this paper is shown in Figure~\ref{fig:DistRejSys}, and  comprises a plant that is controlled by a two-degree-of-freedom controller. The controller is synthesized to optimize the closed-loop system's response to a combination of previewable and non-previewable exogenous inputs.  The presented solution includes an efficient computational framework that is based on two low-order Riccati equations with dimension that of the plant (excluding the preview delay line). This algorithm also includes an efficient computation of the perfect information controller gains as well as the controller itself. We have also provided an efficient method for finding the $\htwo$ norm of the closed-loop system, and a method for evaluating the norm reduction due to preview as $N \rightarrow \infty$. As is shown in Figures~\ref{fig:PrevContStruct} and \ref{fig:PrevContStructxp}, the controller structure is essentially low order with the preview part implemented using an efficient finite-impulse-response section. 

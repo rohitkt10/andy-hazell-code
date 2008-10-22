@@ -94,6 +94,6 @@ Comparing this to (\ref{eqn:H2CostSplit}), it follows that the maximum reduction
 \tra{S'\Gamma S},
 \]
 and evaluating this limit only requires the solution of an $n_g$-dimensional Lyapunov equation (in addition to the $n_g$ dimensional DARE required to evaluate $S$). The following quantity provides a useful measure of the fraction of the maximum norm reduction that has been achieved:
-\aln{\gamma_{\,_{\%,imp}}=100\times \tra{S'\Gamma S}^{-1}{\left(\sum_{j=0}^{N-1}S' A^j_{cg} B_{2g}{\bar R}^{-1} B_{2g}'{A^j_{cg}}'S\right)}.\label{eqn:gamimp}} 
+\aln{\gamma_{\,_{\%,imp}}=100\times \tra {\left(\sum_{j=0}^{N-1}S' A^j_{cg} B_{2g}{\bar R}^{-1} B_{2g}'{A^j_{cg}}'S\right)} / \tra{S'\Gamma S}.\label{eqn:gamimp}} 
 %This provides a useful bound on the achievable norm reduction one might obtain using preview. 
-This can be used to determine how much preview to use; for example, one might continue adding preview points until $\gamma_{\,_{\%,imp}} >99\%$.
+This can be used to determine how much preview to use; for example, one might continue adding preview points until $\gamma_{\,_{\%,imp}} >95 \%$.

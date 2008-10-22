@@ -12,7 +12,7 @@ The low-dimensional solution to the problem described in Figure~\ref{fig:DistRej
 \psfrag{eta}{$\eta$}
 \psfrag{G_p}{$G_p$}
 \includegraphics[height=4.0cm]{./diags/DistRejSys.eps}
-\caption{\label{fig:DistRejSys} A generalized regulator problem with both previewable and non-previewable disturbances. The transfer function $G$ is the system to be controlled, $K$ is the controller to be synthesized and $\Phi$ is an $N$-step delay line. The disturbance $w$ is not previewable, the control and measurement signals are $u$ and $y$ respectively, $\hat r$ is the previewable disturbance, and $r$ is the future value of $\hat r$. The filter $W_r$ is used  model the expected frequency content of $r$.}
+\caption{\label{fig:DistRejSys} A generalized regulator problem with both previewable and non-previewable disturbances. The transfer function $G$ is the system to be controlled, $K$ is the controller to be synthesized and $\Phi = I \z^{-N}$ is an $N$-step delay line. The disturbance $w$ is not previewable, the control and measurement signals are $u$ and $y$ respectively, $\hat r$ is the previewable disturbance, and $r$ is the future value of $\hat r$. The filter $W_r$ is used  model the expected frequency content of $r$.}
 \end{center}
 \end{figure}
 
@@ -30,7 +30,7 @@ by formulating the problem in a generalised regulator framework \cite{LimebeerGr
 \item an analysis of the  generic properties of preview controllers.
 \end{itemize}
 
-Figure~\ref{fig:SimpleSISOPrev} illustrates a simple example that may be used to highlight the benefit of preview, the broad structure of the controller, and the effect of preview on the achievable $\htwo$-norm of the closed-loop system. In this formulation, the preview action arises because of the delay line $\Phi$. The input to the controller is $r$, which is the future value of the reference, and $K$ is chosen so as to ensure that $e$ is `small', and hence the plant output follows $\Phi r$ as closely as possible. 
+Figure~\ref{fig:SimpleSISOPrev} illustrates a simple example that may be used to highlight the benefit of preview, the broad structure of the controller, and the effect of preview on the achievable $\htwo$-norm of the closed-loop system. The preview action arises from the delay line $\Phi$. The input to the controller is $r$, which is the future value of the reference, and $K$ is chosen so as to ensure that $e$ is `small', and hence the plant output follows $\Phi r$ as closely as possible. 
 \begin{figure}
 \stdcontrolfrags
 \begin{center}
@@ -40,20 +40,20 @@ Figure~\ref{fig:SimpleSISOPrev} illustrates a simple example that may be used to
 \label{fig:SimpleSISOPrev}
 \end{figure}
 %
-Now define the error system:
+Define the error system:
 \als{E(\z)=G(\z)K(\z)-\Phi(\z),}
 and assume that $G(\z)$ is stable; in the case that $G(\z)$ is unstable, it could be replaced by $\hat G(\z)=G(\z)(1-G(\z)K_f(\z))^{-1}$ in which $K_f(\z)$ is a stabilising feedback controller. Providing that $G(\z)$ has all its zeros inside the unit circle, perfect tracking ($E(\z)=0$) may be achieved by simply setting $K(\z)=G(\z)^{-1}\Phi(\z)$. 
-However, if $G(\z)$ is {NMP}, then such a $K(\z)$ is not internally stabilising and a controller must be found that recognises the limits imposed by {NMP} zeros on the achievable tracking performance. %Such limitations are well known for non-preview systems (i.e. $N=0$ and $\Phi=1$), and are investigated in some detail in \cite{Middleteon_2004_PrevPerf} and \cite{Mirkin_2004_FixedLagPerfSaturation} for the preview case.
+However, if $G(\z)$ is nonminimum phase (NMP), then such a $K(\z)$ is not internally stabilising and a controller must be found that recognises the limits imposed by {NMP} zeros on the achievable tracking performance. %Such limitations are well known for non-preview systems (i.e. $N=0$ and $\Phi=1$), and are investigated in some detail in \cite{Middleteon_2004_PrevPerf} and \cite{Mirkin_2004_FixedLagPerfSaturation} for the preview case.
 
-For the case where $G(\z)$ is an arbitrary stable, rational transfer function having a single real {NMP} zero at $c_z$, an algebraic expression for the $\htwo$-optimal controller will now be found. Our objective is to find an internally stabilising $K(\z)$ such that $\nrm{E(\z)}_2$ is minimised. 
+For the case where $G(\z)$ is an arbitrary stable rational transfer function having a single real {NMP} zero at $c_z$, the $\htwo$-optimal controller is easily found. Our objective is to find an internally stabilising $K(\z)$ such that $\nrm{E(\z)}_2$ is minimised. 
 
 The following inner-outer factorization  may be performed:
 \als{G(\z)&= G_o(\z) G_i(\z),
 \intertext{where: }
 G_i(\z)&=\frac{\z-c_z}{1-\z c_z}
 .}
-We can write $E(\z)= (\tilde{K}(\z) -\Phi(\z)G_i(\z^{-1}))G_i(\z)$ in which $\tilde{K}(\z)= K(\z) G_o(\z)$ and:
-\mbox{$G_i(\z^{-1})G_i(\z)=1$}. The optimal controller is found by setting $K(\z) = (\Phi(\z)G_i(\z^{-1}))_+ G_o^{-1}(\z) $, where $(\cdot)_+$ denotes the stable projection \citep{Doyle_1990_FeedbackControlTheory}. 
+We can write $E(\z)= (\tilde{K}(\z) -\Phi(\z)G_i(\z^{-1}))G_i(\z)$ in which $\tilde{K}(\z)= K(\z) G_o(\z)$ with
+\mbox{$G_i(\z^{-1})G_i(\z)=1$}. The optimal controller is found by setting $K(\z) = (\Phi(\z)G_i(\z^{-1}))_+ G_o^{-1}(\z) $, where $(\cdot)_+$ denotes the stable projection \citep{Doyle_1990_FeedbackControlTheory,LimebeerGreen}. 
 It follows by direct calculation  that:
 \aln{K(\z)&=\underbrace{G_o(\z)^{-1}}_{IIR}\underbrace{\left(-c_z^{-1}\z^{-N} +  (1-c_z^{-2})c_z \sum^N_{i=1}(\z^{i-N}/c_z^i) \right)}_{FIR},\nonumber
 \intertext{and that:}
@@ -63,7 +63,7 @@ It follows by direct calculation  that:
 
  
 Since $\nrm{E(\z)}_2\rightarrow 0$  as $N\rightarrow \infty$, we conclude that in this example preview action can overcome completely the tracking limitation
-imposed by the {NMP} zero. The optimal controller contains a high-order {FIR} part and a low-order {IIR} part, where the preview action comes from the {FIR} part. The dynamics of the {FIR} block is  fully specified by the {RHP} zero, $c_z$, and the preview length, $N$. The fact that the high order part of the controller is FIR leads to an efficient hardware implementation.
+imposed by the {NMP} zero. The optimal controller contains a high-order {FIR} part and a low-order infinite impulse response {IIR} part, where the preview action comes from the {FIR} part. The dynamics of the {FIR} block is  fully specified by the {RHP} zero, $c_z$, and the preview length, $N$. The fact that the high order part of the controller is FIR leads to an efficient hardware implementation.
 %A similar structure is also observed in the solution to the synthesis problem of Figure~\ref{fig:DistRejSys}, and leads to an efficient implementation of the high-order controller. 
 
 A pole-zero plot of the optimal controller is given in Figure \ref{fig:PZforSISOPrevH2} for the case where $c_z=1.05$, $G_o(\z)=(1-\z c_z)/(\z-0.5)$, and $N=20$. Notice the almost pole-zero cancellation on the real axis. In the limit $N\rightarrow \infty$ cancellation occurs. 
@@ -85,7 +85,7 @@ Point 3 merits further discussion. A central tenet of this paper is that the pre
 
 %An obvious conclusion to be drawn from the example in this section is that preview is potentially useful when designing feedforward controllers for {NMP} systems. However, if one has a control problem with an unstable plant, which is stabilised by a feedback controller, then the resulting closed-loop will often be {NMP}, and so preview action is also potentially useful when controlling unstable systems.
 
-At this stage, the reader might be left with the impression that preview is of no benefit for {MP} plants. However, as an example, it can be shown that the minimum achievable $\htwo$-norm of the transfer function:
+At this stage, the reader might be left with the impression that preview is of no benefit for minimum phase {MP} systems. However, as an example, it can be shown that the minimum achievable $\htwo$-norm of the transfer function:
 \als{
 \ma{E(\z)\\\rho K(\z)}
 ,}
