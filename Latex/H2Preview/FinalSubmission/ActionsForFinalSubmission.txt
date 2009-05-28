@@ -1,0 +1,10 @@
+* Switch to ASME style file
+* Ensure:
+•	The PDF file contains a listing of figure and table captions.
+•	The PDF file contains footers on each page. The footer should contain the assigned paper number, the corresponding author’s last name, and the page number.
+•	double-spaced, single-column manuscript for legibility and readability
+
+* Paste all included files into one large .tex file
+* Rename figure files in the format fig_1.eps ,fig_2.eps etc
+* Check figures on http://dx.sheridan.com/. 
+* Rename .tex file and pdf to include journal number
